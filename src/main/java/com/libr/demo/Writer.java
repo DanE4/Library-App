@@ -21,11 +21,13 @@ public class Writer {
     private Long id;
     private String name;
     private Date birth;
-    public Writer(Long id, String name, LocalDate date) {
+    public Writer(Long id, String name, String date) {
         this.id = id;
         this.name = name;
-        this.birth = Date.valueOf(date);
-    }
 
+        LocalDate localDate = LocalDate.parse(date);
+
+        this.birth = Date.valueOf(localDate);
+    }
 
 }
