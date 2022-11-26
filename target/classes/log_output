@@ -7,91 +7,20 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v2.7.5)
 
-22:49:23.986 [main] INFO  com.libr.demo.DemoApplication - Starting DemoApplication using Java 17.0.3 on 192.168.0.107 with PID 26952 (/Users/dani_eros/Documents/IT/PROGCUCCOK/Coffeecup/Library/target/classes started by dani_eros in /Users/dani_eros/Documents/IT/PROGCUCCOK/Coffeecup/Library)
-22:49:23.987 [main] INFO  com.libr.demo.DemoApplication - The following 1 profile is active: "dev"
-22:49:24.253 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-22:49:24.279 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 2 JPA repository interfaces.
-22:49:24.536 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
-22:49:24.540 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8888"]
-22:49:24.541 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-22:49:24.541 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
-22:49:24.588 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-22:49:24.588 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 581 ms
-22:49:24.675 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-22:49:24.701 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.12.Final
-22:49:24.776 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-22:49:24.816 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-22:49:25.09 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-22:49:25.17 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-22:49:25.234 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-22:49:25.238 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-22:49:25.450 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-22:49:25.587 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8888"]
-22:49:25.594 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8888 (http) with context path ''
-22:49:25.600 [main] INFO  com.libr.demo.DemoApplication - Started DemoApplication in 1.765 seconds (JVM running for 2.101)
-22:49:28.455 [http-nio-8888-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-22:49:28.456 [http-nio-8888-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-22:49:28.457 [http-nio-8888-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+12:07:55.855 - WARN  - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 Hibernate: 
     select
-        book0_.id as id1_0_,
-        book0_.releaseyr as releasey2_0_,
-        book0_.title as title3_0_,
-        book0_.writerid as writerid4_0_ 
+        book0_.id as id1_0_0_,
+        book0_.releaseyr as releasey2_0_0_,
+        book0_.title as title3_0_0_,
+        book0_.writerid as writerid4_0_0_ 
     from
         book book0_ 
     where
-        book0_.title=?
-BookService.addBook
-Hibernate: 
-    insert 
-    into
-        book
-        (releaseyr, title, writerid) 
-    values
-        (?, ?, ?)
-Hibernate: 
-    select
-        book0_.id as id1_0_,
-        book0_.releaseyr as releasey2_0_,
-        book0_.title as title3_0_,
-        book0_.writerid as writerid4_0_ 
-    from
-        book book0_ 
-    where
-        book0_.title=?
-Hibernate: 
-    select
-        book0_.id as id1_0_,
-        book0_.releaseyr as releasey2_0_,
-        book0_.title as title3_0_,
-        book0_.writerid as writerid4_0_ 
-    from
-        book book0_ 
-    where
-        book0_.title=?
-BookService.addBook
-Hibernate: 
-    insert 
-    into
-        book
-        (releaseyr, title, writerid) 
-    values
-        (?, ?, ?)
-Hibernate: 
-    select
-        book0_.id as id1_0_,
-        book0_.releaseyr as releasey2_0_,
-        book0_.title as title3_0_,
-        book0_.writerid as writerid4_0_ 
-    from
-        book book0_
+        book0_.id=?
 Hibernate: 
     delete 
     from
         book 
     where
         id=?
-22:51:54.44 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-22:51:54.46 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-22:51:54.89 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

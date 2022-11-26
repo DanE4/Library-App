@@ -26,7 +26,7 @@ public class DB {
             throw new RuntimeException(e);
         }
     }
-    public void eraseDB() throws SQLException {
+    public void eraseDB() {
         try {
             var connection = DriverManager.getConnection(DB_URL, name, password);
             var statement = connection.createStatement();
@@ -42,7 +42,7 @@ public class DB {
         }
     }
 
-    public void addBook(Book book) throws SQLException {
+    public void addBook(Book book) {
         try {
             var connection = DriverManager.getConnection(DB_URL, name, password);
             var statement = connection.prepareStatement("INSERT INTO book (id, title,releaseyr, writerid ) VALUES (?,?,?,?)");
@@ -58,7 +58,7 @@ public class DB {
         }
     }
 
-    public void deleteBook(Book book) throws SQLException {
+    public void deleteBook(Book book) {
         try{
             var connection = DriverManager.getConnection(DB_URL, name, password);
             var statement = connection.prepareStatement("DELETE FROM book WHERE id = ?");
@@ -71,7 +71,7 @@ public class DB {
         }
     }
 
-    public void updateBook(Book book) throws SQLException {
+    public void updateBook(Book book) {
         try {
             var connection = DriverManager.getConnection(DB_URL, name, password);
             var statement = connection.prepareStatement("UPDATE book SET title = ?, releaseyr = ?, writerid = ? WHERE id = ?");
@@ -87,7 +87,7 @@ public class DB {
         }
     }
 
-    public void addWriter(Writer writer) throws SQLException {
+    public void addWriter(Writer writer) {
         try {
             var connection = DriverManager.getConnection(DB_URL, name, password);
             var statement = connection.prepareStatement("INSERT INTO writer (id, name,birth) VALUES (?,?,?)");
@@ -102,7 +102,7 @@ public class DB {
         }
     }
 
-    public void deleteWriter(String writer) throws SQLException {
+    public void deleteWriter(String writer) {
         try{
             var connection = DriverManager.getConnection(DB_URL, name, password);
             var statement = connection.prepareStatement("SELECT id FROM writer WHERE name = ?");
@@ -123,7 +123,7 @@ public class DB {
         }
     }
 
-    public List<Writer> ListWriters() throws SQLException {
+    public List<Writer> ListWriters() {
         try {
             var connection = DriverManager.getConnection(DB_URL, name, password);
             var statement = connection.prepareStatement("SELECT * FROM writer");
@@ -144,7 +144,7 @@ public class DB {
         }
     }
 
-    public List<Book> ListBooks() throws SQLException {
+    public List<Book> ListBooks() {
         try {
             var connection = DriverManager.getConnection(DB_URL, name, password);
             var statement = connection.prepareStatement("SELECT * FROM book");

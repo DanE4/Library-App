@@ -1,67 +1,117 @@
 package com.libr.demo.Controllers;
 
 import com.libr.demo.Entities.Book;
-import com.libr.demo.Entities.Writer;
-import com.libr.demo.Services.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.libr.demo.Entities.Response;
+import com.libr.demo.Exception.ApiRequestException;
+import com.libr.demo.Services.BookServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
+
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/api/book")
+@RequiredArgsConstructor
 public class BookController {
-
     //spring bean
-    private final BookService bookService;
-
-    @Autowired
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
-    }
-
-
+    private final BookServiceImpl bookServiceImpl;
     //http://localhost:8888/api/book/list
     @GetMapping("/list")
-    public List<Book> getBooks() {
-        return bookService.getBooks();
+    public ResponseEntity<Response> getBooks() {
+        try {
+        return ResponseEntity.ok((Response.builder()
+                .timestamp(LocalDateTime.now())
+                .data(Map.of("Books",bookServiceImpl.getBooks()))
+                .message("Books found")
+                .status(OK).statusCode(OK.value()).build()));
+        } catch (Exception e) {
+            throw new ApiRequestException("Error while getting books, exception: " + e.getMessage());
+        }
     }
 
     //http://localhost:8888/api/book/find/A Game of Thrones
     @GetMapping("/find/{title}")
-    public Optional<Book> findByTitle(@PathVariable String title) {
-        return bookService.findByTitle(title);
+    public ResponseEntity<Response>  findByTitle(@PathVariable String title) {
+        try {
+            return ResponseEntity.ok((Response.builder()
+                    .timestamp(LocalDateTime.now())
+                    .data(Map.of("Book",bookServiceImpl.findByTitle(title)))
+                    .message("Book found")
+                    .status(OK).statusCode(OK.value()).build()));
+        } catch (Exception e) {
+            throw new ApiRequestException("Error while getting book by title: " + title + ", exception: " + e.getMessage());
+        }
     }
 
     //http://localhost:8888/api/book/findid/1
     @GetMapping("/findid/{id}")
-    public Optional<Book> findById(@PathVariable int id) {
-        return bookService.findById(id);
+    public ResponseEntity<Response>findById(@PathVariable int id) {
+        try {
+            return ResponseEntity.ok((Response.builder()
+                    .timestamp(LocalDateTime.now())
+                    .data(Map.of("Book",bookServiceImpl.findById(id)))
+                    .message("Book found")
+                    .status(OK).statusCode(OK.value()).build()));
+        } catch (Exception e) {
+            throw new ApiRequestException("Error while getting book by id: " + id + ", exception: " + e.getMessage());
+        }
     }
     //COOL
     @PostMapping("/add/{title}/{releaseyr}/{writerid}")
-    public Optional<Book> add(@PathVariable String title, @PathVariable int releaseyr, @PathVariable int writerid) {
-        return bookService.addBook(new Book(title, releaseyr, writerid));
+    public ResponseEntity<Response> add(@PathVariable String title, @PathVariable int releaseyr, @PathVariable int writerid) {
+        try {
+               return ResponseEntity.ok((Response.builder()
+                        .timestamp(LocalDateTime.now())
+                        .data(Map.of("Book",bookServiceImpl.addBook(title,releaseyr,writerid)))
+                        .message("Book added")
+                        .status(OK).statusCode(OK.value()).build()));
+        } catch (Exception e) {
+            throw new ApiRequestException("Error while adding book: " + title + ", exception: " + e.getMessage());
+        }
     }
     //COOOL
     @DeleteMapping("/delete/{title}")
-    public void deleteBook(@PathVariable String title) {
-        bookService.deleteBookByTitle(title);
+    public ResponseEntity<Response> deleteBook(@PathVariable String title) {
+       try {
+              return ResponseEntity.ok((Response.builder()
+                       .timestamp(LocalDateTime.now())
+                       .data(Map.of("Book",bookServiceImpl.deleteBookByTitle(title)))
+                       .message("Book deleted")
+                       .status(OK).statusCode(OK.value()).build()));
+         } catch (Exception e) {
+              throw new ApiRequestException("Error while deleting book: " + title + ", exception: " + e.getMessage());
+       }
     }
     //COOOL
     @DeleteMapping("/deletebyid/{id}")
-    public void deleteBookById(@PathVariable int id) {
-        bookService.deleteBookById(id);
+    public ResponseEntity<Response> deleteBookById(@PathVariable int id) {
+        try {
+            return ResponseEntity.ok((Response.builder()
+                    .timestamp(LocalDateTime.now())
+                    .data(Map.of("Book",bookServiceImpl.deleteBookById(id)))
+                    .message("Book deleted")
+                    .status(OK).statusCode(OK.value()).build()));
+        } catch (Exception e) {
+            throw new ApiRequestException("Error while deleting book by id: " + id + ", exception: " + e.getMessage());
+        }
     }
     //COOL
     @DeleteMapping("/deleteAll/{writerid}")
-    public void deleteAllByWriterId(@PathVariable int writerid) {
-        bookService.deleteAllByWriterid(writerid);
+    public ResponseEntity<Response> deleteAllByWriterId(@PathVariable int writerid) {
+        try {
+            return ResponseEntity.ok((Response.builder()
+                    .timestamp(LocalDateTime.now())
+                    .data(Map.of("Book",bookServiceImpl.deleteAllByWriterid(writerid)))
+                    .message("Books deleted")
+                    .status(OK).statusCode(OK.value()).build()));
+        } catch (Exception e) {
+            throw new ApiRequestException("Error while deleting books by writer id: " + writerid + ", exception: " + e.getMessage());
+        }
     }
-
-
 }

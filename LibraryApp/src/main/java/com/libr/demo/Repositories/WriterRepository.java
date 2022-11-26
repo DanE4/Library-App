@@ -11,15 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface WriterRepository extends JpaRepository<Writer, Integer> {
     Writer findByName(String name);
     Writer findById(int id);
-    /*
-    @Modifying
-    @Query("update Writer u set u.birth = :birth where u.id = :id")
-    void updateWriterBirth(@Param(value = "id") int id, @Param(value = "birth") String birth);
-    */
-    @Modifying
-    @Query("update Writer u set u.name = :name where u.id = :id")
-    void updateWriterName(@Param(value = "id") int id, @Param(value = "name") String name);
-
     void deleteById(int id);
 }
 
