@@ -1,0 +1,103 @@
+<section>
+  <mat-form-field appearance="fill">
+    <mat-label>Book Title there</mat-label>
+    <input matInput placeholder="Book Title there" id="delBookTitle" [(ngModel)]="delBookTitle" >
+  </mat-form-field>
+    <button mat-fab color="primary" (click)="deleteBook()" >
+      <mat-icon>delete</mat-icon>
+    </button>
+</section>
+  
+<section>
+  <mat-form-field appearance="fill" >
+    <mat-label>Writer Name there</mat-label>
+    <input matInput placeholder="Writer Name there" id="delWriterName"[(ngModel)]="delWriterName">
+  </mat-form-field>
+    <button mat-fab color="primary" (click)="deleteWriter()" >
+      <mat-icon>delete</mat-icon>
+    </button>
+</section>
+<mat-divider></mat-divider>
+<section>
+  <div class="example-button-row">
+    <button mat-raised-button color="primary" (click)="onListingBooks()">Get Books</button>
+  </div>
+</section>
+
+
+
+
+
+<table mat-table [dataSource]="response.data.Books" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let book"> {{book.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let book"> {{book.title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="releaseyr">
+    <th mat-header-cell *matHeaderCellDef> Release Year </th>
+    <td mat-cell *matCellDef="let book"> {{book.releaseyr}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumnsBook"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnsBook;"></tr>
+</table>
+
+
+
+
+<mat-divider></mat-divider>
+<section>
+  <div class="example-button-row">
+    <button mat-raised-button color="primary" (click)="onListingWriters()">Get Writers</button>
+  </div>
+</section>
+<table mat-table [dataSource]="response.data.Writers" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let writer"> {{writer.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let writer"> {{writer.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="birth">
+    <th mat-header-cell *matHeaderCellDef> Birth </th>
+    <td mat-cell *matCellDef="let writer"> {{writer.birth}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumnsWriter"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnsWriter;"></tr>
+</table>
+
+
+
+
+
+
+<mat-divider></mat-divider>
+<section>
+  <mat-form-field appearance="fill" >
+    <mat-label>Író Létrehozás </mat-label>
+    <input matInput placeholder="ID,Name,Birth" id="addWriterTitle" [(ngModel)]="addWriterName">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="addWriter()">Létrehozás</button>
+</section>
+<section>
+<mat-form-field appearance="fill" >
+  <mat-label>Könyv Létrehozás</mat-label>
+  <input matInput placeholder="ID,WriterID,Title,Release Year" id="addBookTitle" [(ngModel)]="addBookTitle">
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="addBook()">Létrehozás</button>
+</section>
+
+<mat-divider></mat-divider>
+<a mat-raised-button href="/books.html" target="_blank" >Next Page</a>
