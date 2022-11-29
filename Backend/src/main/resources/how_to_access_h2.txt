@@ -1,0 +1,5 @@
+http://localhost:8888/h2-console/
+jdbc:h2:mem:Library
+
+Select * From Book
+Select * From Writer
