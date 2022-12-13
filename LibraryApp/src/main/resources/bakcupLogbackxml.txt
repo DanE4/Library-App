@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/Library.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>target/Library.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <appender name="SevereRollingFile"
+            class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/severe-logger.log</file>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>WARN</level>
+    </filter>
+    <encoder
+            class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+    </encoder>
+  </appender>
+
+
+
+
+  <logger name="org.springframework" level="INFO" />
+  <logger name="org.hibernate" level="INFO" />
+  <logger name="org.apache" level="INFO" />
+  <logger name="com.example" level="DEBUG" />
+  <root level="INFO">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>
